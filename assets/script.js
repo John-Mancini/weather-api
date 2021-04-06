@@ -20,3 +20,18 @@ citySearchBtn.click(function () {
   appendBtn(city);
   getAllWeatherData(city);
 });
+
+function appendBtn(city) {
+  if (!cityNames.includes(city)) {
+    let li = $("<li>");
+    li.text(city);
+    li.addClass("list-group-item"); //<li class = "listgroupitem">"</li>"
+    li.click(function (event) {
+      let city = $(event.target).text();
+      console.log(city);
+      getAllWeatherData(city);
+    });
+    $("#search-history-list").append(li);
+    cityNames.push(city);
+  }
+}
