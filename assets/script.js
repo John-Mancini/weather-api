@@ -63,4 +63,18 @@ function getAllWeatherData(city) {
       cityName.text(data.name);
       weatherContent.removeClass("hide");
     });
+
+  let urlForecast =
+    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    city +
+    "&appid=32bd1aba40b578b2069db9c3cbbf0792&units=imperial";
+  console.log(urlForecast);
+
+  $.ajax({
+    url: urlForecast,
+  }).done(function (data) {
+    console.log("forecast");
+    console.log(data);
+    populateForecastPanels(data);
+  });
 }
