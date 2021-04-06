@@ -14,3 +14,9 @@ let clearHistoryBtn = $("#clear-history");
 let fiveDayPanel = $("#five-day-forecast");
 
 let cityNames = [];
+
+citySearchBtn.click(function () {
+  let city = citySearch.val();
+  appendBtn(city);
+  getAllWeatherData(city);
+});
