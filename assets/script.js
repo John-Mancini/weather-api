@@ -106,3 +106,17 @@ function populateForecastPanels(data) {
     fiveDayPanel.append(panel);
   }
 }
+
+function generatePanel(day) {
+  console.log(day);
+  return `<div class="col-2">
+     <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">${day.dt_txt}</h5>
+        <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}.png"/>
+        <p class="card-text">Temp:${day.main.temp}</p>
+        <p class="card-text">Humidity:${day.main.humidity}</p>
+      </div>
+    </div>
+  </div>`;
+}
