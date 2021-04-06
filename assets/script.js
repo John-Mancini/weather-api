@@ -35,3 +35,8 @@ function appendBtn(city) {
     cityNames.push(city);
   }
 }
+function getAllWeatherData(city) {
+  let url =
+    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    city +
+    "&appid=32bd1aba40b578b2069db9c3cbbf0792&units=imperial";
