@@ -83,3 +83,26 @@ function clearHistory() {
   searchHistoryList.empty();
   cityNames.length = 0;
 }
+clearHistoryBtn.click(clearHistory);
+
+function populateForecastPanels(data) {
+  let fiveDays = [];
+  for (let i = 0; i < data.list.length; i++) {
+    // console.log(i);
+    // console.log(data.list[i]);
+    // console.log(data.list[i].dt_txt);
+    let weatherSnapshot = data.list[i];
+    if (data.list[i].dt_txt.includes("12:00:00")) {
+      fiveDays.push(weatherSnapshot);
+    } else {
+    }
+  }
+  // console.log(fiveDays);
+  fiveDayPanel.empty();
+  for (let i = 0; i < fiveDays.length; i++) {
+    // console.log(fiveDays[i]);
+    let day = fiveDays[i];
+    let panel = generatePanel(day);
+    fiveDayPanel.append(panel);
+  }
+}
