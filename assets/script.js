@@ -21,6 +21,17 @@ citySearchBtn.click(function () {
   getAllWeatherData(city);
 });
 
+function getUV(lat, lon) {
+  let uvUrl = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+  $.ajax({
+    url: uvUrl,
+  }).done(function (data) {
+    // console.log(data);
+    uvIndex.text(data.value);
+    // return data.value;
+  });
+}
+
 function appendBtn(city) {
   if (!cityNames.includes(city)) {
     let li = $("<li>");
