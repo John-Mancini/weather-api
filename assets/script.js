@@ -78,3 +78,8 @@ function getAllWeatherData(city) {
     populateForecastPanels(data);
   });
 }
+
+function clearHistory() {
+  searchHistoryList.empty();
+  cityNames.length = 0;
+}
