@@ -40,3 +40,27 @@ function getAllWeatherData(city) {
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&appid=32bd1aba40b578b2069db9c3cbbf0792&units=imperial";
+
+  fetch(url, {
+    method: "GET",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data);
+      // console.log(data.name);
+      // console.log(data.main.temp);
+      // console.log(data.main.humidity);
+      // console.log(data.wind.speed);
+      // console.log();
+
+      temperature.text(data.main.temp);
+      windSpeed.text(data.wind.speed);
+      humidity.text(data.main.humidity);
+      getUV(data.coord.lat, data.coord.lon);
+      // uvIndex.text(getUV(data.coord.lat, data.coord.lon));
+      cityName.text(data.name);
+      weatherContent.removeClass("hide");
+    });
+}
