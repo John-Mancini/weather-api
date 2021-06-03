@@ -15,10 +15,14 @@ let fiveDayPanel = $("#five-day-forecast");
 
 let cityNames = [];
 
+loadCities();
+displayCityBtn();
+
 citySearchBtn.click(function () {
   let city = citySearch.val();
-  appendBtn(city);
+  appendNewBtn(city);
   getAllWeatherData(city);
+  saveCities();
 });
 
 function getUV(lat, lon) {
@@ -32,20 +36,25 @@ function getUV(lat, lon) {
   });
 }
 
-function appendBtn(city) {
+function appendNewBtn(city) {
   if (!cityNames.includes(city)) {
-    let li = $("<li>");
-    li.text(city);
-    li.addClass("list-group-item"); //<li class = "listgroupitem">"</li>"
-    li.click(function (event) {
-      let city = $(event.target).text();
-      console.log(city);
-      getAllWeatherData(city);
-    });
-    $("#search-history-list").append(li);
+    appendBtn(city);
     cityNames.push(city);
   }
 }
+
+function appendBtn(city) {
+  let li = $("<li>");
+  li.text(city);
+  li.addClass("list-group-item"); //<li class = "listgroupitem">"</li>"
+  li.click(function (event) {
+    let city = $(event.target).text();
+    console.log(city);
+    getAllWeatherData(city);
+  });
+  $("#search-history-list").append(li);
+}
+
 function getAllWeatherData(city) {
   let url =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -93,6 +102,7 @@ function getAllWeatherData(city) {
 function clearHistory() {
   searchHistoryList.empty();
   cityNames.length = 0;
+  saveCities();
 }
 clearHistoryBtn.click(clearHistory);
 
@@ -130,4 +140,32 @@ function generatePanel(day) {
       </div>
     </div>
   </div>`;
+}
+
+// var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+
+// // Put the object into storage
+// localStorage.setItem('testObject', JSON.stringify(testObject));
+
+// // Retrieve the object from storage
+// var retrievedObject = localStorage.getItem('testObject');
+
+// console.log('retrievedObject: ', JSON.parse(retrievedObject));
+function saveCities() {
+  localStorage.setItem("cityNames", JSON.stringify(cityNames));
+}
+
+function loadCities() {
+  var cityString = localStorage.getItem("cityNames");
+  if (cityString) {
+    cityNames = JSON.parse(cityString);
+  }
+}
+
+function displayCityBtn() {
+  for (let index = 0; index < cityNames.length; index++) {
+    var item = cityNames[index];
+    console.log(item);
+    appendBtn(item);
+  }
 }
