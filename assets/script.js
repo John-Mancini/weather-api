@@ -22,7 +22,7 @@ citySearchBtn.click(function () {
 });
 
 function getUV(lat, lon) {
-  let uvUrl = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+  let uvUrl = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
   $.ajax({
     url: uvUrl,
   }).done(function (data) {
@@ -48,7 +48,7 @@ function appendBtn(city) {
 }
 function getAllWeatherData(city) {
   let url =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&appid=32bd1aba40b578b2069db9c3cbbf0792&units=imperial";
 
@@ -76,7 +76,7 @@ function getAllWeatherData(city) {
     });
 
   let urlForecast =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
     city +
     "&appid=32bd1aba40b578b2069db9c3cbbf0792&units=imperial";
   console.log(urlForecast);
@@ -124,7 +124,7 @@ function generatePanel(day) {
      <div class="card">
       <div class="card-body">
         <h5 class="card-title">${day.dt_txt}</h5>
-        <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}.png"/>
+        <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png"/>
         <p class="card-text">Temp:${day.main.temp}</p>
         <p class="card-text">Humidity:${day.main.humidity}</p>
       </div>
